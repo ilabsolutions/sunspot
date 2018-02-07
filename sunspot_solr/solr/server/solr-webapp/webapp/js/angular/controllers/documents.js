@@ -24,8 +24,8 @@ var DOC_PLACEHOLDER = '<doc>\n' +
 var ADD_PLACEHOLDER = '<add>\n' + DOC_PLACEHOLDER + '</add>\n';
 
 solrAdminApp.controller('DocumentsController',
-    function($scope, $rootScope, $routeParams, $location, Luke, Update, FileUpload) {
-        $scope.resetMenu("documents");
+    function($scope, $rootScope, $routeParams, $location, Luke, Update, FileUpload, Constants) {
+        $scope.resetMenu("documents", Constants.IS_COLLECTION_PAGE);
 
         $scope.refresh = function () {
             Luke.schema({core: $routeParams.core}, function(data) {
@@ -38,7 +38,6 @@ solrAdminApp.controller('DocumentsController',
             $scope.type = "json";
             $scope.commitWithin = 1000;
             $scope.overwrite = true;
-            $scope.boost = "1.0";
         };
 
         $scope.refresh();
@@ -78,7 +77,6 @@ solrAdminApp.controller('DocumentsController',
             }
 
             params.commitWithin = $scope.commitWithin;
-            params.boost = $scope.boost;
             params.overwrite = $scope.overwrite;
             params.core = $routeParams.core;
             params.wt = "json";
@@ -116,7 +114,7 @@ solrAdminApp.controller('DocumentsController',
                     $scope.responseStatus = failure;
                 };
                 if (contentType == "json") {
-                  Update.postJson(params, postData, callack, failure);
+                  Update.postJson(params, postData, callback, failure);
                 } else if (contentType == "xml") {
                   Update.postXml(params, postData, callback, failure);
                 } else if (contentType == "csv") {
