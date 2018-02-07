@@ -255,10 +255,11 @@ module Sunspot
     #
     def connection
       @connection ||=
-        self.class.connection_class.connect(:url          => config.solr.url,
-                                            :read_timeout => config.solr.read_timeout,
-                                            :open_timeout => config.solr.open_timeout,
-                                            :proxy        => config.solr.proxy)
+        self.class.connection_class.connect(:url           => config.solr.url,
+                                            :read_timeout  => config.solr.read_timeout,
+                                            :open_timeout  => config.solr.open_timeout,
+                                            :update_format => :xml,
+                                            :proxy         => config.solr.proxy)
     end
 
     def indexer
