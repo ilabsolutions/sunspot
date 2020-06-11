@@ -33,7 +33,6 @@ set GC_TUNE=-XX:NewRatio=3 ^
  -XX:TargetSurvivorRatio=90 ^
  -XX:MaxTenuringThreshold=8 ^
  -XX:+UseConcMarkSweepGC ^
- -XX:+UseParNewGC ^
  -XX:ConcGCThreads=4 -XX:ParallelGCThreads=4 ^
  -XX:+CMSScavengeBeforeRemark ^
  -XX:PretenureSizeThreshold=64m ^
@@ -87,3 +86,4 @@ REM set SOLR_SSL_OPTS=-Djavax.net.ssl.keyStore=etc/solr-ssl.keystore.jks -Djavax
 REM Uncomment to set a specific SSL port (-Djetty.ssl.port=N); if not set
 REM and you are using SSL, then the start script will use SOLR_PORT for the SSL port
 REM set SOLR_SSL_PORT=
+
